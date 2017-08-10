@@ -1,0 +1,21 @@
+opam-version: "1.2"
+maintainer: "andreashauptmann@t-online.de"
+authors: [ "andreashauptmann@t-online.de" ]
+license: "LGPL-2.1 with OCaml linking exception"
+homepage: "https://github.com/fdopen/uwt-js"
+dev-repo: "https://github.com/fdopen/uwt-js.git"
+bug-reports: "https://github.com/fdopen/uwt-js/issues"
+build: ["omake" "-j%{jobs}%" "lib"]
+install: [
+  ["omake" "install"]
+]
+remove: [
+  ["ocamlfind" "remove" "uwt-js-unix"]
+  ["rm" "-rf" "%{prefix}%/doc/uwt-js-unix"]
+]
+available: [ocaml-version >= "4.04.0"]
+depends: [
+  "cppo" {build & >= "1.3"}
+  "omake" {build}
+  "uwt" {>= "0.2.0"}
+]

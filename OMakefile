@@ -1,0 +1,10 @@
+USE_OCAMLFIND=true
+VERSION=0.0.1
+OCAML_BYTE_LINK_FLAGS= # don't compile with -custom
+
+include OMakeIncludes
+
+.PHONY: clean all lib install uninstall
+.DEFAULT: all
+
+.SUBDIRS: src-unix

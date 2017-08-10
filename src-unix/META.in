@@ -1,0 +1,7 @@
+version = "@VERSION@"
+description = "uwt node compatible interface"
+requires = "uwt uwt.sync"
+archive(byte) = "uwt_js.cma"
+archive(native) = "uwt_js.cmxa"
+plugin(byte) = "uwt_js.cma"
+plugin(native) = "uwt_js.cmxs"

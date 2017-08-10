@@ -1,0 +1,27 @@
+PROJNAME=uwt-js-unix
+BYTE_ENABLED=true
+OCAMLFLAGS= -g -bin-annot -no-alias-deps -strict-sequence -safe-string -w A-3-4
+
+.PHONY: clean all lib install uninstall
+.DEFAULT: lib
+
+uwt_js.mli: ../src-js/uwt_js.cppo.mli
+	cppo -D NATIVE $+ -o $@
+
+clean::
+	rm -f uwt_js.mli
+
+section
+	OCAMLPACKS=uwt uwt.sync
+	Repeat_targets(uwt_js)
+	UWT_JS_UNIX=$(MOCamlLibrary uwt-js, uwt_js)
+	export UWT_JS_UNIX
+
+ConfReplace(META)
+Install_helper($(PROJNAME),$(UWT_JS_UNIX),$(EMPTY))
+
+lib:: $(UWT_JS_UNIX)
+all:: lib
+
+clean::
+	clean-helper()

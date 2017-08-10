@@ -1,0 +1,15 @@
+(rule
+ ((targets (uwt_js.mli))
+  (deps    (uwt_js.cppo.mli))
+  (action  (run ${bin:cppo} -D JAVASCRIPT ${<} -o ${@}))))
+
+(library
+ ((name  uwt_js)
+  (public_name uwt-js)
+  (js_of_ocaml ((javascript_files (uwt.js))))
+  (flags (-g -bin-annot -strict-sequence -safe-string -w A-3-4-60))
+  (modes (byte))
+  (libraries (lwt js_of_ocaml unix))
+  (preprocess (pps (lwt.ppx -no-debug js_of_ocaml-ppx)))
+))
+
